@@ -1,0 +1,5 @@
+{
+    "mochaExplorer.files": "server/src/**/*test.ts",
+    "mochaExplorer.require": ["server/node_modules/ts-node/register"],
+    "mochaExplorer.env": {"TS_NODE_COMPILER_OPTIONS":"{\"lib\": [\"ES2019\"]}"}   
+}

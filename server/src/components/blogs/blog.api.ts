@@ -1,11 +1,13 @@
 import * as express from 'express';
 import { BlogService } from './blog.service';
 import { BlogRepo } from './blog.repo';
+import { DataAccess } from './../common/dataAccess';
 
 const router = express.Router();
 
 router.get('/',async (req : express.Request, resp : express.Response) => {
-    const service = new BlogService({ blogRepo: new BlogRepo()});
+    const db = await (new DataAccess().getInstance());
+    const service = new BlogService({ blogRepo: new BlogRepo(db)});
     resp.send(await service.getBlogs());
 });
 

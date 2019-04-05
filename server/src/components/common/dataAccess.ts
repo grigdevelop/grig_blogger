@@ -180,4 +180,4 @@ class DataAccess{
     }
 }
 
-export { DataAccess }
+export { DataAccess, IDatabase }

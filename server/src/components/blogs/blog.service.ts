@@ -17,6 +17,10 @@ class BlogService {
             resolve(await this.context.blogRepo.getBlogs());
         }); 
     }
+
+    createBlog(blog: Blog) : Promise<Blog> {
+        return this.context.blogRepo.createBlog(blog);       
+    }
 }
 
 export { BlogService };
