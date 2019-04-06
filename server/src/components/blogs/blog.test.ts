@@ -54,4 +54,19 @@ describe('BlogService', () => {
         expect(dbBlogs[0].title).to.be.equals(expectedBlog.title);
         expect(dbBlogs[0].content).to.be.equals(expectedBlog.content);
     });
+
+    it('should validate blog', ( done ) => {
+        const mock: TypeMoq.IMock<BlogRepo> = TypeMoq.Mock.ofType(BlogRepo);
+        mock.setup( repo => repo.createBlog( TypeMoq.It.isAny() ) )
+        .returns(blog => new Promise<Blog>((resolve, reject) => resolve(blog)));
+        const blogService : BlogService = new BlogService( { blogRepo: mock.object });
+
+        const blog : Blog = { id: 0, title: null, content: null };
+        
+        blogService.createBlog(blog)
+        .then( blog => expect(null).to.not.null('create blog not throws invalid error'))
+        .catch( error => console.log('method error: ', error))
+        .finally(done);
+        
+    });
 });

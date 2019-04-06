@@ -7,6 +7,48 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Program Update",
+            "runtimeExecutable": "ts-node-dev",
+            "args": [
+                "${workspaceFolder}\\server\\src\\app.ts"
+            ],
+            "restart": true
+        },
+        {
+            "name": "Debug nodemon",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/server/node_modules/nodemon/bin/nodemon",
+            "args": ["--exec","ts-node", "src/app.ts" ],
+            "cwd": "${workspaceRoot}/server",
+            "protocol": "inspector",
+            "console": "integratedTerminal",
+            "debugServer": 7777
+        },
+        {
+            "name": "Debug ts-node",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/server/node_modules/ts-node/dist/bin",
+            "args": [ "${workspaceRoot}/server/src/app.ts" ],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector"
+        },
+        {
+            "type": "node", 
+            "request": "launch",
+            "name": "Launch App",
+            "program": "${workspaceFolder}/server/node_modules/nodemon/bin/nodemon",
+            "args": [
+                "--exec",
+                "ts-node",
+                "server/src/app.ts"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Run Mocha tests",            
             "program": "${workspaceFolder}/server/node_modules/mocha/bin/_mocha",
             "args": [
